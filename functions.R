@@ -2068,6 +2068,208 @@ get_training_data <-
       return(df)
     }
 
+    # Social Groups recode. Wird in get_data() angewendet.
+    recode_social_groups <- function(df){
+      df <- df %>%
+         mutate(social_groups=case_when(
+            cmp_code == '000' ~  0,
+            cmp_code == '101' ~  0,
+            cmp_code == '102' ~  0,
+            cmp_code == '103' ~  0,
+            cmp_code == '104' ~  0,
+            cmp_code == '105' ~  0,
+            cmp_code == '106' ~  0,
+            cmp_code == '107' ~  0,
+            cmp_code == '108' ~  0,
+            cmp_code == '109' ~  0,
+            cmp_code == '110' ~  0,
+            cmp_code == '201' ~  0,
+            cmp_code == '202' ~  0,
+            cmp_code == '203' ~  0,
+            cmp_code == '204' ~  0,
+            cmp_code == '301' ~  0,
+            cmp_code == '302' ~  0,
+            cmp_code == '303' ~  0,
+            cmp_code == '304' ~  0,
+            cmp_code == '305' ~  0,
+            cmp_code == '401' ~  0,
+            cmp_code == '402' ~  0,
+            cmp_code == '403' ~  0,
+            cmp_code == '404' ~  0,
+            cmp_code == '405' ~  0,
+            cmp_code == '406' ~  0,
+            cmp_code == '407' ~  0,
+            cmp_code == '408' ~  0,
+            cmp_code == '409' ~  0,
+            cmp_code == '410' ~  0,
+            cmp_code == '411' ~  0,
+            cmp_code == '412' ~  0,
+            cmp_code == '413' ~  0,
+            cmp_code == '414' ~  0,
+            cmp_code == '415' ~  0,
+            cmp_code == '416' ~  0,
+            cmp_code == '501' ~  0,
+            cmp_code == '502' ~  0,
+            cmp_code == '503' ~  0,
+            cmp_code == '504' ~  0,
+            cmp_code == '505' ~  0,
+            cmp_code == '506' ~  0,
+            cmp_code == '507' ~  0,
+            cmp_code == '601' ~  0,
+            cmp_code == '602' ~  0,
+            cmp_code == '603' ~  0,
+            cmp_code == '604' ~  0,
+            cmp_code == '605' ~  0,
+            cmp_code == '606' ~  0,
+            cmp_code == '607' ~  0,
+            cmp_code == '608' ~  0,
+            cmp_code == '701' ~  1,
+            cmp_code == '702' ~  1,
+            cmp_code == '703' ~  2,
+            cmp_code == '704' ~  3,
+            cmp_code == '705' ~  4,
+            cmp_code == '706' ~  5,
+            cmp_code == 'H' ~  NA_real_, # Überschriften raus, wegen Trennschärfe
+            # Zusammenfassung der Subkategorien
+            cmp_code == '103.1' ~  0,
+            cmp_code == '103.2' ~  0,
+            cmp_code == '201.1' ~  0,
+            cmp_code == '201.2' ~  0,
+            cmp_code == '202.1' ~  0,
+            cmp_code == '202.2' ~  0,
+            cmp_code == '202.3' ~  0,
+            cmp_code == '202.4' ~  0,
+            cmp_code == '305.1' ~  0,
+            cmp_code == '305.2' ~  0,
+            cmp_code == '305.3' ~  0,
+            cmp_code == '305.4' ~  0,
+            cmp_code == '305.5' ~  0,
+            cmp_code == '305.6' ~  0,
+            cmp_code == '416.1' ~  0,
+            cmp_code == '416.2' ~  0,
+            cmp_code == '601.1' ~  0,
+            cmp_code == '601.2' ~  0,
+            cmp_code == '602.1' ~  0,
+            cmp_code == '602.2' ~  0,
+            cmp_code == '605.1' ~  0,
+            cmp_code == '605.2' ~  0,
+            cmp_code == '606.1' ~  0,
+            cmp_code == '606.2' ~  0,
+            cmp_code == '607.1' ~  0,
+            cmp_code == '607.2' ~  0,
+            cmp_code == '607.3' ~  0,
+            cmp_code == '608.1' ~  0,
+            cmp_code == '608.2' ~  0,
+            cmp_code == '608.3' ~  0,
+            cmp_code == '703.1' ~  2,
+            cmp_code == '703.2' ~  2,
+            TRUE ~ NA_real_
+        )) %>% 
+        drop_na()
+      return(df)
+    }
+
+    # Labour Groups recode. Wird in get_data() angewendet.
+    recode_labour_groups <- function(df){
+      df <- df %>%
+         mutate(labour_groups=case_when(
+            cmp_code == '000' ~  0,
+            cmp_code == '101' ~  0,
+            cmp_code == '102' ~  0,
+            cmp_code == '103' ~  0,
+            cmp_code == '104' ~  0,
+            cmp_code == '105' ~  0,
+            cmp_code == '106' ~  0,
+            cmp_code == '107' ~  0,
+            cmp_code == '108' ~  0,
+            cmp_code == '109' ~  0,
+            cmp_code == '110' ~  0,
+            cmp_code == '201' ~  0,
+            cmp_code == '202' ~  0,
+            cmp_code == '203' ~  0,
+            cmp_code == '204' ~  0,
+            cmp_code == '301' ~  0,
+            cmp_code == '302' ~  0,
+            cmp_code == '303' ~  0,
+            cmp_code == '304' ~  0,
+            cmp_code == '305' ~  0,
+            cmp_code == '401' ~  0,
+            cmp_code == '402' ~  0,
+            cmp_code == '403' ~  0,
+            cmp_code == '404' ~  0,
+            cmp_code == '405' ~  0,
+            cmp_code == '406' ~  0,
+            cmp_code == '407' ~  0,
+            cmp_code == '408' ~  0,
+            cmp_code == '409' ~  0,
+            cmp_code == '410' ~  0,
+            cmp_code == '411' ~  0,
+            cmp_code == '412' ~  0,
+            cmp_code == '413' ~  0,
+            cmp_code == '414' ~  0,
+            cmp_code == '415' ~  0,
+            cmp_code == '416' ~  0,
+            cmp_code == '501' ~  0,
+            cmp_code == '502' ~  0,
+            cmp_code == '503' ~  0,
+            cmp_code == '504' ~  0,
+            cmp_code == '505' ~  0,
+            cmp_code == '506' ~  0,
+            cmp_code == '507' ~  0,
+            cmp_code == '601' ~  0,
+            cmp_code == '602' ~  0,
+            cmp_code == '603' ~  0,
+            cmp_code == '604' ~  0,
+            cmp_code == '605' ~  0,
+            cmp_code == '606' ~  0,
+            cmp_code == '607' ~  0,
+            cmp_code == '608' ~  0,
+            cmp_code == '701' ~  1,
+            cmp_code == '702' ~  2,
+            cmp_code == '703' ~  0,
+            cmp_code == '704' ~  0,
+            cmp_code == '705' ~  0,
+            cmp_code == '706' ~  0,
+            cmp_code == 'H' ~  NA_real_, # Überschriften raus, wegen Trennschärfe
+            # Zusammenfassung der Subkategorien
+            cmp_code == '103.1' ~  0,
+            cmp_code == '103.2' ~  0,
+            cmp_code == '201.1' ~  0,
+            cmp_code == '201.2' ~  0,
+            cmp_code == '202.1' ~  0,
+            cmp_code == '202.2' ~  0,
+            cmp_code == '202.3' ~  0,
+            cmp_code == '202.4' ~  0,
+            cmp_code == '305.1' ~  0,
+            cmp_code == '305.2' ~  0,
+            cmp_code == '305.3' ~  0,
+            cmp_code == '305.4' ~  0,
+            cmp_code == '305.5' ~  0,
+            cmp_code == '305.6' ~  0,
+            cmp_code == '416.1' ~  0,
+            cmp_code == '416.2' ~  0,
+            cmp_code == '601.1' ~  0,
+            cmp_code == '601.2' ~  0,
+            cmp_code == '602.1' ~  0,
+            cmp_code == '602.2' ~  0,
+            cmp_code == '605.1' ~  0,
+            cmp_code == '605.2' ~  0,
+            cmp_code == '606.1' ~  0,
+            cmp_code == '606.2' ~  0,
+            cmp_code == '607.1' ~  0,
+            cmp_code == '607.2' ~  0,
+            cmp_code == '607.3' ~  0,
+            cmp_code == '608.1' ~  0,
+            cmp_code == '608.2' ~  0,
+            cmp_code == '608.3' ~  0,
+            cmp_code == '703.1' ~  0,
+            cmp_code == '703.2' ~  0,
+            TRUE ~ NA_real_
+        )) %>% 
+        drop_na()
+      return(df)
+    }
+
     ### get_data_function
     get_data <- function(corpus_code=c(""), my_corpus) {
       # Args:
@@ -2151,6 +2353,12 @@ get_training_data <-
 
       # Multiculuralismn
       df <- recode_multiculturalism(df) # Anwendung der Funktion für Multikuluralismus.
+
+      # Social Groups
+      df <- recode_social_groups(df) # Anwendung der Funktion für spezielle Gruppen.
+
+      # Labour Groups
+      df <- recode_labour_groups(df) # Anwendung der Funktion für Gewerkschaften.
       
       # Bisher sind die Zeilen des DataFrames nach der Position im jeweiligen Wahlprogramm sortiert.
       # Um einen Einfluss auf das Training zu verhindern, wird nun die Reihenfolge der Zeilen per Zufall geändert.
