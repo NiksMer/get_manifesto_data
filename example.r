@@ -1,11 +1,11 @@
 # Packges laden
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(lubridate)
-library(purrr)
-library(manifestoR)
-library(tm)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(stringr))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(purrr))
+suppressPackageStartupMessages(library(manifestoR))
+suppressPackageStartupMessages(library(tm))
 
 # Funktion laden
 source("functions.R")
@@ -17,7 +17,8 @@ df <- get_training_data(
   country_vec = c(
     "United Kingdom"
   ),
-  reliability = 0.0
+  reliability = 0.0,
+  seed=1
 )
 
 # Output
