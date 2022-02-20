@@ -69,8 +69,11 @@ get_training_data <-
     #   reliability:: float
     #       Die mininale Coder-Reliabilität, um Manifestos zurück zu erhalten. Zusätzlich immer Coder=199 --> Group-Mitglieder
     # Returns:
-    #   corpus_code:: c("")
-    #       Ein Character-Vector mit den ID-Codes von Wahlprogrammen, welche den Anfordungen der Eingaben entsprechen.
+    #   list:: list
+    #         list[[1]]: corpus_code:: c("")
+    #                    Ein Character-Vector mit den ID-Codes von Wahlprogrammen, welche den Anfordungen der Eingaben entsprechen.
+    #         list[[2]]: land_party_codes:: DataFrame
+    #                     Êin DataFrame mit den Ländernamen pro corpus_code
       corpus_list <- manifestoR::mp_maindataset(version = "current",
                                                 south_america = FALSE,
                                                 apikey = api_key) %>%
@@ -81,10 +84,15 @@ get_training_data <-
         dplyr::mutate(year = lubridate::year(edate)) %>%
         dplyr::filter(year >= lubridate::year(start_day)) %>% 
         dplyr::filter(testresult >= reliability | coderid <= 199)
+
+      land_party_codes <- corpus_list %>%
+            select(countryname,corpus_code)
       
       corpus_code <- as.vector(corpus_list$corpus_code)
+
+      list <- list(corpus_code,land_party_codes)
       
-      return(corpus_code)
+      return(list)
     }
 
     ### Funktion zum Rekodieren des CMP-Codes in Links/Rechts-Einteilung. Wird in get_data() aufgerufen.
@@ -2381,10 +2389,15 @@ get_training_data <-
     my_corpus <- manifestoR::mp_corpus(edate >= start_day)
     
     ### load corpus_code
-    corpus_code <- get_corpus_code(api_key, start_day, country_vec, reliability)
+    list <- get_corpus_code(api_key, start_day, country_vec, reliability)
+    corpus_code <- list[[1]]
+    land_party_codes <- list[[2]]
     
     ### get_data
     df <- get_data(corpus_code = corpus_code, my_corpus = my_corpus)
+
+    df <- df %>%
+      left_join(land_party_codes,by="corpus_code")
     
     return(df)
   }
