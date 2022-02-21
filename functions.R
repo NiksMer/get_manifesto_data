@@ -95,6 +95,106 @@ get_training_data <-
       return(list)
     }
 
+    # Funktion zum Einteilen in die Manifesto-Kategorien. Wird in get_data() angewendet.
+    recode_label <- function(df){
+      df <- df %>%
+         mutate(label=case_when(
+            cmp_code == '000' ~  0,
+            cmp_code == '101' ~  101,
+            cmp_code == '102' ~  102,
+            cmp_code == '103' ~  103,
+            cmp_code == '103.1' ~  103,
+            cmp_code == '103.2' ~  103,
+            cmp_code == '104' ~  104,
+            cmp_code == '105' ~  105,
+            cmp_code == '106' ~  106,
+            cmp_code == '107' ~  107,
+            cmp_code == '108' ~  108,
+            cmp_code == '109' ~  109,
+            cmp_code == '110' ~  110,
+            cmp_code == '201' ~  201,
+            cmp_code == '201.1' ~  201,
+            cmp_code == '201.2' ~  201,
+            cmp_code == '202' ~  202,
+            cmp_code == '202.1' ~  202,
+            cmp_code == '202.2' ~  202,
+            cmp_code == '202.3' ~  202,
+            cmp_code == '202.4' ~  202,
+            cmp_code == '203' ~  203,
+            cmp_code == '204' ~  204,
+            cmp_code == '301' ~  301,
+            cmp_code == '302' ~  302,
+            cmp_code == '303' ~  303,
+            cmp_code == '304' ~  304,
+            cmp_code == '305' ~  305,
+            cmp_code == '305.1' ~  305,
+            cmp_code == '305.2' ~  305,
+            cmp_code == '305.3' ~  305,
+            cmp_code == '305.4' ~  305,
+            cmp_code == '305.5' ~  305,
+            cmp_code == '305.6' ~  305,
+            cmp_code == '401' ~  401,
+            cmp_code == '402' ~  402,
+            cmp_code == '403' ~  403,
+            cmp_code == '404' ~  404,
+            cmp_code == '405' ~  405,
+            cmp_code == '406' ~  406,
+            cmp_code == '407' ~  407,
+            cmp_code == '408' ~  408,
+            cmp_code == '409' ~  409,
+            cmp_code == '410' ~  410,
+            cmp_code == '411' ~  411,
+            cmp_code == '412' ~  412,
+            cmp_code == '413' ~  413,
+            cmp_code == '414' ~  414,
+            cmp_code == '415' ~  415,
+            cmp_code == '416' ~  416,
+            cmp_code == '416.1' ~  416,
+            cmp_code == '416.2' ~  416,
+            cmp_code == '501' ~  501,
+            cmp_code == '502' ~  502,
+            cmp_code == '503' ~  503,
+            cmp_code == '504' ~  504,
+            cmp_code == '505' ~  505,
+            cmp_code == '506' ~  506,
+            cmp_code == '507' ~  507,
+            cmp_code == '601' ~  601,
+            cmp_code == '601.1' ~  601,
+            cmp_code == '601.2' ~  601,
+            cmp_code == '602' ~  602,
+            cmp_code == '602.1' ~  602,
+            cmp_code == '602.2' ~  602,
+            cmp_code == '603' ~  603,
+            cmp_code == '604' ~  604,
+            cmp_code == '605' ~  605,
+            cmp_code == '605.1' ~  605,
+            cmp_code == '605.2' ~  605,
+            cmp_code == '606' ~  606,
+            cmp_code == '606.1' ~  606,
+            cmp_code == '606.2' ~  606,
+            cmp_code == '607' ~  607,
+            cmp_code == '607.1' ~  607,
+            cmp_code == '607.2' ~  607,
+            cmp_code == '607.3' ~  607,
+            cmp_code == '608' ~  608,
+            cmp_code == '608.1' ~  608,
+            cmp_code == '608.2' ~  608,
+            cmp_code == '608.3' ~  608,
+            cmp_code == '701' ~  701,
+            cmp_code == '702' ~  702,
+            cmp_code == '703' ~  703,
+            cmp_code == '703.1' ~  703,
+            cmp_code == '703.2' ~  703,
+            cmp_code == '704' ~  704,
+            cmp_code == '705' ~  705,
+            cmp_code == '706' ~  706,
+            cmp_code == 'H' ~  NA_real_, # Überschriften raus, wegen Trennschärfe
+            TRUE ~ NA_real_
+        )) %>% 
+        drop_na()
+      return(df)
+    }
+
     ### Funktion zum Rekodieren des CMP-Codes in Links/Rechts-Einteilung. Wird in get_data() aufgerufen.
     recode_sentiment <- function(df){
       # Args:
@@ -2300,6 +2400,9 @@ get_training_data <-
       df <- purrr::map_dfr(corpus_code, function(i = .x) {
         rbind(df, import(my_corpus, corpus = i)) # Anwendung der Import-Funktion. Loopt zeilenweise über my_corpus.
       }) 
+
+      # Labels
+      df <- recode_label(df) # Anwendung der Funktion um Subkategorien zusammenzufassen.
 
       # Links/Rechts
       df <- recode_sentiment(df) # Anwendung der Funktion zur Links/Rechts Einteilung
