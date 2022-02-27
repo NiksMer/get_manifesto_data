@@ -98,95 +98,95 @@ get_training_data <-
     recode_label <- function(df){
       df <- df %>%
          mutate(label=case_when(
-            cmp_code == '000' ~  0,
-            cmp_code == '101' ~  1,
-            cmp_code == '102' ~  2,
-            cmp_code == '103' ~  3,
-            cmp_code == '103.1' ~  3,
-            cmp_code == '103.2' ~  3,
-            cmp_code == '104' ~  4,
-            cmp_code == '105' ~  5,
-            cmp_code == '106' ~  6,
-            cmp_code == '107' ~  7,
-            cmp_code == '108' ~  8,
-            cmp_code == '109' ~  9,
-            cmp_code == '110' ~  10,
-            cmp_code == '201' ~  11,
-            cmp_code == '201.1' ~  11,
-            cmp_code == '201.2' ~  11,
-            cmp_code == '202' ~  12,
-            cmp_code == '202.1' ~  12,
-            cmp_code == '202.2' ~  12,
-            cmp_code == '202.3' ~  12,
-            cmp_code == '202.4' ~  12,
-            cmp_code == '203' ~  13,
-            cmp_code == '204' ~  14,
-            cmp_code == '301' ~  15,
-            cmp_code == '302' ~  16,
-            cmp_code == '303' ~  17,
-            cmp_code == '304' ~  18,
-            cmp_code == '305' ~  19,
-            cmp_code == '305.1' ~  19,
-            cmp_code == '305.2' ~  19,
-            cmp_code == '305.3' ~  19,
-            cmp_code == '305.4' ~  19,
-            cmp_code == '305.5' ~  19,
-            cmp_code == '305.6' ~  19,
-            cmp_code == '401' ~  20,
-            cmp_code == '402' ~  21,
-            cmp_code == '403' ~  22,
-            cmp_code == '404' ~  23,
-            cmp_code == '405' ~  24,
-            cmp_code == '406' ~  25,
-            cmp_code == '407' ~  26,
-            cmp_code == '408' ~  27,
-            cmp_code == '409' ~  28,
-            cmp_code == '410' ~  29,
-            cmp_code == '411' ~  30,
-            cmp_code == '412' ~  31,
-            cmp_code == '413' ~  32,
-            cmp_code == '414' ~  33,
-            cmp_code == '415' ~  34,
-            cmp_code == '416' ~  35,
-            cmp_code == '416.1' ~  35,
-            cmp_code == '416.2' ~  35,
-            cmp_code == '501' ~  36,
-            cmp_code == '502' ~  37,
-            cmp_code == '503' ~  38,
-            cmp_code == '504' ~  39,
-            cmp_code == '505' ~  40,
-            cmp_code == '506' ~  41,
-            cmp_code == '507' ~  42,
-            cmp_code == '601' ~  43,
-            cmp_code == '601.1' ~  43,
-            cmp_code == '601.2' ~  43,
-            cmp_code == '602' ~  44,
-            cmp_code == '602.1' ~  44,
-            cmp_code == '602.2' ~  44,
-            cmp_code == '603' ~  45,
-            cmp_code == '604' ~  46,
-            cmp_code == '605' ~  47,
-            cmp_code == '605.1' ~  47,
-            cmp_code == '605.2' ~  47,
-            cmp_code == '606' ~  48,
-            cmp_code == '606.1' ~  48,
-            cmp_code == '606.2' ~  48,
-            cmp_code == '607' ~  49,
-            cmp_code == '607.1' ~  49,
-            cmp_code == '607.2' ~  49,
-            cmp_code == '607.3' ~  49,
-            cmp_code == '608' ~  50,
-            cmp_code == '608.1' ~  50,
-            cmp_code == '608.2' ~  50,
-            cmp_code == '608.3' ~  50,
-            cmp_code == '701' ~  51,
-            cmp_code == '702' ~  52,
-            cmp_code == '703' ~  53,
-            cmp_code == '703.1' ~  53,
-            cmp_code == '703.2' ~  53,
-            cmp_code == '704' ~  54,
-            cmp_code == '705' ~  55,
-            cmp_code == '706' ~  56,
+            cmp_code == '000' ~  NA_real_,
+            cmp_code == '101' ~  0,
+            cmp_code == '102' ~  1,
+            cmp_code == '103' ~  2,
+            cmp_code == '103.1' ~  2,
+            cmp_code == '103.2' ~  2,
+            cmp_code == '104' ~  3,
+            cmp_code == '105' ~  4,
+            cmp_code == '106' ~  5,
+            cmp_code == '107' ~  6,
+            cmp_code == '108' ~  7,
+            cmp_code == '109' ~  8,
+            cmp_code == '110' ~  9,
+            cmp_code == '201' ~  10,
+            cmp_code == '201.1' ~  10,
+            cmp_code == '201.2' ~  10,
+            cmp_code == '202' ~  11,
+            cmp_code == '202.1' ~  11,
+            cmp_code == '202.2' ~  11,
+            cmp_code == '202.3' ~  11,
+            cmp_code == '202.4' ~  11,
+            cmp_code == '203' ~  12,
+            cmp_code == '204' ~  13,
+            cmp_code == '301' ~  14,
+            cmp_code == '302' ~  15,
+            cmp_code == '303' ~  16,
+            cmp_code == '304' ~  17,
+            cmp_code == '305' ~  18,
+            cmp_code == '305.1' ~  18,
+            cmp_code == '305.2' ~  18,
+            cmp_code == '305.3' ~  18,
+            cmp_code == '305.4' ~  18,
+            cmp_code == '305.5' ~  18,
+            cmp_code == '305.6' ~  18,
+            cmp_code == '401' ~  19,
+            cmp_code == '402' ~  20,
+            cmp_code == '403' ~  21,
+            cmp_code == '404' ~  22,
+            cmp_code == '405' ~  23,
+            cmp_code == '406' ~  24,
+            cmp_code == '407' ~  25,
+            cmp_code == '408' ~  26,
+            cmp_code == '409' ~  27,
+            cmp_code == '410' ~  28,
+            cmp_code == '411' ~  39,
+            cmp_code == '412' ~  30,
+            cmp_code == '413' ~  31,
+            cmp_code == '414' ~  32,
+            cmp_code == '415' ~  33,
+            cmp_code == '416' ~  34,
+            cmp_code == '416.1' ~  34,
+            cmp_code == '416.2' ~  34,
+            cmp_code == '501' ~  35,
+            cmp_code == '502' ~  36,
+            cmp_code == '503' ~  37,
+            cmp_code == '504' ~  38,
+            cmp_code == '505' ~  39,
+            cmp_code == '506' ~  40,
+            cmp_code == '507' ~  41,
+            cmp_code == '601' ~  42,
+            cmp_code == '601.1' ~  42,
+            cmp_code == '601.2' ~  42,
+            cmp_code == '602' ~  43,
+            cmp_code == '602.1' ~  43,
+            cmp_code == '602.2' ~  43,
+            cmp_code == '603' ~  44,
+            cmp_code == '604' ~  45,
+            cmp_code == '605' ~  46,
+            cmp_code == '605.1' ~  46,
+            cmp_code == '605.2' ~  46,
+            cmp_code == '606' ~  47,
+            cmp_code == '606.1' ~  47,
+            cmp_code == '606.2' ~  47,
+            cmp_code == '607' ~  48,
+            cmp_code == '607.1' ~  48,
+            cmp_code == '607.2' ~  48,
+            cmp_code == '607.3' ~  48,
+            cmp_code == '608' ~  49,
+            cmp_code == '608.1' ~  49,
+            cmp_code == '608.2' ~  49,
+            cmp_code == '608.3' ~  49,
+            cmp_code == '701' ~  50,
+            cmp_code == '702' ~  51,
+            cmp_code == '703' ~  52,
+            cmp_code == '703.1' ~  52,
+            cmp_code == '703.2' ~  52,
+            cmp_code == '704' ~  53,
+            cmp_code == '705' ~  54,
+            cmp_code == '706' ~  55,
             cmp_code == 'H' ~  NA_real_, # Überschriften raus, wegen Trennschärfe
             TRUE ~ NA_real_
         )) %>% 
@@ -360,7 +360,7 @@ get_training_data <-
     recode_foreign_policy <- function(df){
       df <- df %>%
          mutate(foreign_policy=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  1,
             cmp_code == '102' ~  1,
             cmp_code == '103' ~  2,
@@ -461,7 +461,7 @@ get_training_data <-
     recode_foreign_relationships <- function(df){
       df <- df %>%
          mutate(foreign_relationship=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  1,
             cmp_code == '102' ~  2,
             cmp_code == '103' ~  0,
@@ -562,7 +562,7 @@ get_training_data <-
     recode_military <- function(df){
       df <- df %>%
          mutate(military=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -663,7 +663,7 @@ get_training_data <-
     recode_internationalism <- function(df){
       df <- df %>%
          mutate(internationalism=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -764,7 +764,7 @@ get_training_data <-
     recode_eu <- function(df){
       df <- df %>%
          mutate(state_unions=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -865,7 +865,7 @@ get_training_data <-
     recode_freedom <- function(df){
       df <- df %>%
          mutate(freedom=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -966,7 +966,7 @@ get_training_data <-
     recode_constitutionalism <- function(df){
       df <- df %>%
          mutate(constitutionalism=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1067,7 +1067,7 @@ get_training_data <-
     recode_political_system <- function(df){
       df <- df %>%
          mutate(political_system=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1168,7 +1168,7 @@ get_training_data <-
     recode_centralisation <- function(df){
       df <- df %>%
          mutate(centralisation=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1269,7 +1269,7 @@ get_training_data <-
     recode_economy <- function(df){
       df <- df %>%
          mutate(economy=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1370,7 +1370,7 @@ get_training_data <-
     recode_protectionism <- function(df){
       df <- df %>%
          mutate(protectionism=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1471,7 +1471,7 @@ get_training_data <-
     recode_welfare_lifequality <- function(df){
       df <- df %>%
          mutate(welfare_lifequality=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1572,7 +1572,7 @@ get_training_data <-
     recode_welfare <- function(df){
       df <- df %>%
          mutate(welfare=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1673,7 +1673,7 @@ get_training_data <-
     recode_education <- function(df){
       df <- df %>%
          mutate(education=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1774,7 +1774,7 @@ get_training_data <-
     recode_society <- function(df){
       df <- df %>%
          mutate(society=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1875,7 +1875,7 @@ get_training_data <-
     recode_national_way <- function(df){
       df <- df %>%
          mutate(national_way=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -1976,7 +1976,7 @@ get_training_data <-
     recode_morality <- function(df){
       df <- df %>%
          mutate(morality=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -2077,7 +2077,7 @@ get_training_data <-
     recode_multiculturalism <- function(df){
       df <- df %>%
          mutate(multiculturalism=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -2178,7 +2178,7 @@ get_training_data <-
     recode_social_groups <- function(df){
       df <- df %>%
          mutate(social_groups=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
@@ -2279,7 +2279,7 @@ get_training_data <-
     recode_labour_groups <- function(df){
       df <- df %>%
          mutate(labour_groups=case_when(
-            cmp_code == '000' ~  0,
+            cmp_code == '000' ~  NA_real_,
             cmp_code == '101' ~  0,
             cmp_code == '102' ~  0,
             cmp_code == '103' ~  0,
