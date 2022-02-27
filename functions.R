@@ -142,7 +142,7 @@ get_training_data <-
             cmp_code == '408' ~  26,
             cmp_code == '409' ~  27,
             cmp_code == '410' ~  28,
-            cmp_code == '411' ~  39,
+            cmp_code == '411' ~  29,
             cmp_code == '412' ~  30,
             cmp_code == '413' ~  31,
             cmp_code == '414' ~  32,
