@@ -59,6 +59,7 @@ df_roh <- df_roh %>%
     dplyr::filter(corpus_code!="63320_200711") %>%
     dplyr::filter(corpus_code!="63620_200711") %>%
     dplyr::filter(corpus_code!="63810_200711")
+    
 ## Die Parteien 63621 und 63622 sind, ähnlich wie die CSU, Schwesterparteien von 63620
 df_roh <- df_roh %>%
     dplyr::filter(str_starts(corpus_code,"63621")==FALSE) %>%
